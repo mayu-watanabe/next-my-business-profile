@@ -1,13 +1,78 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect } from "react";
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+
+  useEffect(() => {
+    if (process.browser) {
+      gsap.registerPlugin(ScrollTrigger)
+      setAnimation()
+    }
+  }, [])
+
+  const setAnimation = () => {
+    if (process.browser) {
+      const sections = document.querySelectorAll('section')
+      const headingsLeft = document.querySelectorAll('.itemLeft')
+      const headingsRight = document.querySelectorAll('.itemRight')
+    
+      headingsLeft.forEach((heading, i) => {
+        gsap.fromTo(heading, 
+            {opacity: 0},
+            {
+            opacity: 1,
+            duration:1,
+            scrollTrigger: {
+              trigger: sections[i],
+              start: 'top 30%',
+              end: `bottom 50%`,
+              scrub: true,
+              markers: false
+            },
+        })
+      })
+
+      headingsRight.forEach((heading, i) => {
+        gsap.fromTo(heading, 
+            {opacity: 0},
+            {
+            opacity: 1,
+            duration:1,
+            scrollTrigger: {
+              trigger: sections[i],
+              start: 'top 30%',
+              end: `bottom 50%`,
+              scrub: true,
+              markers: false
+            },
+        })
+      })
+
+      gsap.fromTo('.top', 
+        {opacity: 1},
+        {
+        opacity: 0.5,
+        duration:1,
+        scrollTrigger: {
+          trigger: '.top',
+          start: 'top 0%',
+          end: `bottom 50%`,
+          scrub: true,
+          markers: false  
+        },
+    })
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.topLogo}>Hello, it’s Mayu</div>
       
-      <div className={styles.top}>
+      <div className={styles.top + ' top'}>
         <div className={styles.imageUnset}>
           <Image src="/profile-photo.jpg" alt="profile" layout="fill" objectFit='contain' className={styles.imageProfile}/>
         </div>
@@ -22,22 +87,22 @@ export default function Home() {
       
       <main className={styles.main}>
         <div className={styles.sectionInfo}>
-          <div className={styles.sectionItem}>
-            <div className={styles.item}>
+          <div className={styles.sectionItem + ' itemLeft'}>
+            <section className={styles.item}>
               <h3 className={styles.itemTitle}>Personal Values</h3>
               <p>responsibility</p>
               <p>creativity</p>
               <p>cooperation</p>
               <p>curiosity</p>
-            </div>
+            </section>
 
-            <div className={styles.item}>
-              <h3 className={styles.itemTitle}>Languages</h3>
+            <section className={styles.item + ' itemLeft'}>
+              <h3 className={styles.itemTitle} id="item">Languages</h3>
               <p>Japanese (native)</p>
               <p>English (intermediate)</p>
-            </div>
+            </section>
 
-            <div className={styles.item}>
+            <section className={styles.item + ' itemLeft'}>
               <h3 className={styles.itemTitle}>Skills</h3>
               <div className={styles.itemItem}>
                 <h4 className={styles.itemTextBold}>Languages</h4>
@@ -51,11 +116,11 @@ export default function Home() {
                 <h4 className={styles.itemTextBold}>OS</h4>
                 <p>windows, mac, linux</p>
               </div>
-            </div>
+            </section>
           </div>
 
           <div className={styles.sectionItem}>
-            <div className={styles.item}>
+            <section className={styles.item + ' itemRight'}>
               <h3 className={styles.itemTitle}>Education</h3>
               <div className={styles.itemItem}>
                 <h4 className={styles.itemTextBold}>Department of Business Administration,<br/>Faculty of Economics</h4>
@@ -68,13 +133,13 @@ export default function Home() {
                 <p>University of Copenhagen</p>
                 <p>2016-2017</p>
               </div>
-            </div>
+            </section>
 
-            <div className={styles.item}>
+            <section className={styles.item + ' itemRight'}>
               <h3 className={styles.itemTitle}>Work Experience</h3>
               <h4 className={styles.itemTextBold}>Web Developer</h4>
               <p>2019-current</p>
-            </div>
+            </section>
           </div>
         </div>
       </main>

@@ -30,12 +30,13 @@
 }
 
 .topLogo {
-  position: fixed;
+  position: absolute;
   z-index: 2;
   transform: rotate(270deg);
-  top: 40vh;
+  top: 42vh;
   left: -40vh;
   font-size: 7rem;
+  font-weight: bold;
 }
 
 .name {
