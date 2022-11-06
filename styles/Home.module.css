@@ -1,7 +1,85 @@
 .container {
-  padding: 0 2rem;
+  background: white;
+  color: #333333;
 }
 
+.imageUnset {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.imageUnset > div {
+  position: unset !important;
+}
+
+.imageProfile {
+  object-fit: cover;
+  width: 90% !important;
+  position: relative !important;
+  height: unset !important;
+  margin-left: 17vw;
+}
+
+.main {
+  min-height: 100vh;
+  margin: 0 10% 20% 18%;
+}
+
+.top {
+  position: relative;
+}
+
+.topLogo {
+  position: fixed;
+  z-index: 2;
+  transform: rotate(270deg);
+  top: 40vh;
+  left: -40vh;
+  font-size: 7rem;
+}
+
+.name {
+  position:  absolute;
+  bottom: 10vh;
+  left: 22vw;
+  color: white;
+}
+
+.nameTitle {
+  font-size: 2.5rem;
+}
+
+.sectionInfo {
+  display: flex;
+  flex: 2;
+  justify-content: space-between;
+}
+
+.sectionItem {
+  padding: 0 4rem;
+}
+
+.item {
+  padding: 6rem 0 0 0;
+}
+
+.itemTitle {
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.itemTextBold {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.itemItem {
+  padding-bottom: 2rem;
+}
+
+/* 
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -126,4 +204,4 @@
   .logo img {
     filter: invert(1);
   }
-}
+} */
