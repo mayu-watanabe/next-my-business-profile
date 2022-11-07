@@ -29,12 +29,33 @@ p {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: white) {
+.global-footer {
+  text-align: center;
+  margin: 3% 0;
+}
+
+@media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: white;
   }
   body {
-    color: white;
-    background: black;
+    color: black;
+    background: white;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    width: 768px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    width: 480px;
+  }
+
+  p {
+    font-size: 1rem;
   }
 }

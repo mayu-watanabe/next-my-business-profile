@@ -17,54 +17,76 @@ export default function Home() {
   const setAnimation = () => {
     if (process.browser) {
       const sections = document.querySelectorAll('section')
+      const items = document.querySelectorAll('.item')
       const headingsLeft = document.querySelectorAll('.itemLeft')
       const headingsRight = document.querySelectorAll('.itemRight')
     
-      headingsLeft.forEach((heading, i) => {
-        gsap.fromTo(heading, 
-            {opacity: 0},
+      ScrollTrigger.matchMedia({
+        '(min-width: 769px)': () => {
+          headingsLeft.forEach((heading, i) => {
+            gsap.fromTo(heading, 
+                {opacity: 0},
+                {
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                  trigger: sections[i],
+                  start: 'top 30%',
+                  end: `bottom 50%`,
+                  scrub: true,
+                  markers: false
+                },
+            })
+          })
+    
+          headingsRight.forEach((heading, i) => {
+            gsap.fromTo(heading, 
+                {opacity: 0},
+                {
+                opacity: 1,
+                duration:1,
+                scrollTrigger: {
+                  trigger: headingsRight[i],
+                  start: 'top 30%',
+                  end: `bottom 50%`,
+                  scrub: true,
+                  markers: false
+                },
+            })
+          })
+    
+          gsap.fromTo('.top', 
+            {opacity: 1},
             {
-            opacity: 1,
+            opacity: 0.5,
             duration:1,
             scrollTrigger: {
-              trigger: sections[i],
-              start: 'top 30%',
+              trigger: '.top',
+              start: 'top 0%',
               end: `bottom 50%`,
               scrub: true,
-              markers: false
+              markers: false  
             },
-        })
-      })
-
-      headingsRight.forEach((heading, i) => {
-        gsap.fromTo(heading, 
-            {opacity: 0},
-            {
-            opacity: 1,
-            duration:1,
-            scrollTrigger: {
-              trigger: sections[i],
-              start: 'top 30%',
-              end: `bottom 50%`,
-              scrub: true,
-              markers: false
-            },
-        })
-      })
-
-      gsap.fromTo('.top', 
-        {opacity: 1},
-        {
-        opacity: 0.5,
-        duration:1,
-        scrollTrigger: {
-          trigger: '.top',
-          start: 'top 0%',
-          end: `bottom 50%`,
-          scrub: true,
-          markers: false  
+          })
         },
-    })
+        '(max-width: 768px)': () => {
+          items.forEach((item, i) => {
+            gsap.fromTo(item, 
+                {opacity: 0},
+                {
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                  trigger: sections[i],
+                  start: 'top 70%',
+                  end: `bottom 0%`,
+                  scrub: false,
+                  markers: false
+                },
+            })
+          })
+        }
+      })
     }
   }
 
@@ -74,7 +96,7 @@ export default function Home() {
       
       <div className={styles.top + ' top'}>
         <div className={styles.imageUnset}>
-          <Image src="/profile-photo.jpg" alt="profile" layout="fill" objectFit='contain' className={styles.imageProfile}/>
+          <Image src="/profile-photo.jpg" alt="profile" layout="fill" objectFit='contain' className={styles.imageProfile} />
         </div>
 
         <div className={styles.name}>
@@ -87,7 +109,7 @@ export default function Home() {
       
       <main className={styles.main}>
         <div className={styles.sectionInfo}>
-          <div className={styles.sectionItem + ' itemLeft'}>
+          <div className={styles.sectionItem + ' itemLeft item'}>
             <section className={styles.item}>
               <h3 className={styles.itemTitle}>Personal Values</h3>
               <p>responsibility</p>
@@ -96,13 +118,13 @@ export default function Home() {
               <p>curiosity</p>
             </section>
 
-            <section className={styles.item + ' itemLeft'}>
+            <section className={styles.item + ' itemLeft item'}>
               <h3 className={styles.itemTitle} id="item">Languages</h3>
               <p>Japanese (native)</p>
               <p>English (intermediate)</p>
             </section>
 
-            <section className={styles.item + ' itemLeft'}>
+            <section className={styles.item + ' itemLeft item'}>
               <h3 className={styles.itemTitle}>Skills</h3>
               <div className={styles.itemItem}>
                 <h4 className={styles.itemTextBold}>Languages</h4>
@@ -120,7 +142,7 @@ export default function Home() {
           </div>
 
           <div className={styles.sectionItem}>
-            <section className={styles.item + ' itemRight'}>
+            <section className={styles.item + ' itemRight item'}>
               <h3 className={styles.itemTitle}>Education</h3>
               <div className={styles.itemItem}>
                 <h4 className={styles.itemTextBold}>Department of Business Administration,<br/>Faculty of Economics</h4>
@@ -135,7 +157,7 @@ export default function Home() {
               </div>
             </section>
 
-            <section className={styles.item + ' itemRight'}>
+            <section className={styles.item + ' itemRight item'}>
               <h3 className={styles.itemTitle}>Work Experience</h3>
               <h4 className={styles.itemTextBold}>Web Developer</h4>
               <p>2019-current</p>
@@ -143,6 +165,10 @@ export default function Home() {
           </div>
         </div>
       </main>
+      
+      <footer className="global-footer">
+        © {new Date().getFullYear()} Mayu Watanabe
+      </footer>
     </div>
   )
 }
