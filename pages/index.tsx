@@ -120,6 +120,12 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Mayu Watanabe</title>
+        <meta name="description" content="Hello, it’s Mayu" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+      </Head>
+
       <div className={styles.topLogo}>Hello, it’s Mayu</div>
       
       <div className={styles.top + ' top'}>
