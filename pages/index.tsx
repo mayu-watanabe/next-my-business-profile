@@ -67,6 +67,20 @@ export default function Home() {
               scrub: true,
               markers: false  
             },
+            })
+          
+          gsap.fromTo('#portfolio', 
+            {opacity: 0},
+            {
+            opacity: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: '#portfolio',
+              start: 'top 60%',
+              end: `bottom 50%`,
+              scrub: true,
+              markers: false
+            },
           })
         },
         '(max-width: 768px)': () => {
@@ -85,6 +99,20 @@ export default function Home() {
                 },
             })
           })
+
+          gsap.fromTo('#portfolio', 
+            {opacity: 0},
+            {
+              opacity: 1,
+              duration: 1,
+              scrollTrigger: {
+                trigger: '#portfolio',
+                start: 'top 70%',
+                end: `bottom 50%`,
+                scrub: false,
+                markers: false
+            },
+          })
         }
       })
     }
@@ -98,6 +126,8 @@ export default function Home() {
         <div className={styles.imageUnset}>
           <Image src="/profile-photo.jpg" alt="profile" layout="fill" objectFit='contain' className={styles.imageProfile} />
         </div>
+
+        <Image src="/profile-photo-sp.png" alt="profile" width={480} height={600} className={styles.imageProfileSp} />
 
         <div className={styles.name}>
           <h3 className={styles.nameTitle}>Mayu Watanabe</h3>
@@ -163,6 +193,13 @@ export default function Home() {
               <p>2019-current</p>
             </section>
           </div>
+        </div>
+
+        <div className={styles.sectionItem} id="portfolio">
+          <section className={styles.item + ' itemLeft item'}>
+            <h3 className={styles.sectionTitle} id="item">Portfolio</h3>
+            <p>coming soon...</p>
+          </section>
         </div>
       </main>
       

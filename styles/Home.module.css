@@ -20,6 +20,10 @@
   margin-left: 17vw;
 }
 
+.imageProfileSp {
+  display: none;
+}
+
 .main {
   min-height: 100vh;
   margin: 5% 10% 50% 18%;
@@ -81,6 +85,12 @@
   padding-bottom: 2rem;
 }
 
+.sectionTitle {
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 768px) {
   .sectionInfo {
     display: block;
@@ -126,5 +136,13 @@
 
   .nameTitle {
     font-size: 200%;
+  }
+
+  .imageProfile {
+    display: none;
+  }
+
+  .imageProfileSp {
+    display: block;
   }
 }
